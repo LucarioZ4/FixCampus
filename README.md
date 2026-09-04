@@ -9,14 +9,6 @@ priorizar una falla urgente y una menor. Tampoco existe un historial que permita
 El sistema debe responder: Que reportes existen y en que estado estan, quien lo/s reporto y donde exactamente ocurrio el problema, quien es el tecnico/monitor responsable de atenderlo, cuanto tiempo ha pasado desde que se reportó y que
 comentarios o seguimientos se ha hecho.
 
-## 📊 Diagrama EER del Proyecto (Notación de Chen)
-
-El diseño conceptual y lógico de la base de datos de **FixCampus** se encuentra modelado bajo la notación tradicional de Chen (entidades, atributos y relaciones). 
-
-El archivo fuente del diagrama se encuentra disponible en la carpeta de documentación bajo el nombre del archivo `.drawio`.
-
-### 🔍 Cómo ver o editar el diagrama
-
 2. Requisitos e interrogatorio
 Lista de requisitos de información:
 
@@ -47,6 +39,15 @@ Estas son las ambigüedades que se identificaron al analizar el dominio, y la de
 ¿Cómo se modela la ubicación? Como una sola tabla Ubicaciones con los campos bloque, piso y salón combinados, en lugar de tres entidades separadas (Bloque, Piso, Salón). Se decide así por alcance del curso: el nivel de detalle adicional no aporta valor al problema de negocio y complicaría el modelo sin necesidad.
 
 ¿Quién atiende un reporte primero, el monitor o el técnico? El monitor. Cada monitor tiene a su cargo uno o varios salones y pisos de un bloque, y es el primer responsable de cualquier falla reportada en esas ubicaciones. Solo si la falla supera su alcance (por ejemplo, requiere conocimiento técnico especializado) se escala el reporte a un técnico. Esto significa que el "responsable" de un reporte no siempre es un técnico: puede ser un monitor o un técnico, según en qué punto del flujo esté.
+
+## 📊 Diagrama EER del Proyecto (Notación de Chen)
+
+El diseño conceptual y lógico de la base de datos de **FixCampus** se encuentra modelado bajo la notación tradicional de Chen (entidades, atributos y relaciones). 
+
+El archivo fuente del diagrama se encuentra disponible en la carpeta de documentación bajo el nombre del archivo `.drawio`.
+
+### 🔍 Cómo ver o editar el diagrama
+
 
 * **Visor Oficial Web:** Entra a [draw.io](https://app.diagrams.net/), descarga o clona este repositorio, y arrastra y suelta el archivo `.drawio` directamente sobre el lienzo en blanco para visualizarlo y editarlo de inmediato.
 * **Extensión para VS Code:** Si trabajas desde Visual Studio Code, puedes instalar la extensión oficial **Draw.io Integration** (de *hediet*) para abrir, ver y modificar el archivo con un solo clic dentro del entorno de desarrollo.
