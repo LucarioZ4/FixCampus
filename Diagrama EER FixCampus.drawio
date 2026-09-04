@@ -66,9 +66,19 @@
             <mxGeometry x="1" y="10" as="offset" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="l_HGWYc6xFR4wP3CeHjB-18" connectable="0" parent="edge_tr1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="N" vertex="1">
+          <mxGeometry relative="1" x="-0.3538" y="-2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="edge_tr2" edge="1" parent="1" source="rel_tiene" target="ent_usuarios">
           <mxGeometry relative="1" as="geometry">
             <mxGeometry x="1" y="10" as="label" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l_HGWYc6xFR4wP3CeHjB-17" connectable="0" parent="edge_tr2" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.3734" y="-4" as="geometry">
+            <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="ent_ubicaciones" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontStyle=1;fontSize=14;" value="UBICACIONES" vertex="1">
@@ -205,19 +215,19 @@
         <mxCell id="rel_ubica" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" value="SE_UBICA_EN" vertex="1">
           <mxGeometry height="50" width="95" x="320" y="400" as="geometry" />
         </mxCell>
-        <mxCell id="e_ub1" edge="1" parent="1" source="ent_ubicaciones" target="rel_ubica">
+        <mxCell id="e_ub1" edge="1" parent="1" source="ent_ubicaciones" target="rel_ubica" value="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_ub2" edge="1" parent="1" source="rel_ubica" target="ent_reportes">
+        <mxCell id="e_ub2" edge="1" parent="1" source="rel_ubica" target="ent_reportes" value="N">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="rel_pertenece" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" value="PERTENECE_A" vertex="1">
           <mxGeometry height="50" width="105" x="260" y="750" as="geometry" />
         </mxCell>
-        <mxCell id="e_pt1" edge="1" parent="1" source="ent_categorias" target="rel_pertenece">
+        <mxCell id="e_pt1" edge="1" parent="1" source="ent_categorias" target="rel_pertenece" value="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_pt2" edge="1" parent="1" source="rel_pertenece" target="ent_reportes">
+        <mxCell id="e_pt2" edge="1" parent="1" source="rel_pertenece" target="ent_reportes" value="N">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="570" y="690" />
@@ -227,10 +237,10 @@
         <mxCell id="rel_tiene_estado" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" value="TIENE_ESTADO" vertex="1">
           <mxGeometry height="50" width="110" x="520" y="800" as="geometry" />
         </mxCell>
-        <mxCell id="e_tes1" edge="1" parent="1" source="ent_estados" target="rel_tiene_estado">
+        <mxCell id="e_tes1" edge="1" parent="1" source="ent_estados" target="rel_tiene_estado" value="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_tes2" edge="1" parent="1" source="rel_tiene_estado" target="ent_reportes">
+        <mxCell id="e_tes2" edge="1" parent="1" source="rel_tiene_estado" target="ent_reportes" value="N">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="ent_tecnicos_der" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontStyle=1;fontSize=14;" value="TECNICOS" vertex="1">
@@ -343,10 +353,10 @@
         <mxCell id="rel_tiene_com" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" value="TIENE_COMENTARIOS" vertex="1">
           <mxGeometry height="50" width="130" x="1100" y="710" as="geometry" />
         </mxCell>
-        <mxCell id="e_tc1" edge="1" parent="1" source="ent_reportes" target="rel_tiene_com">
+        <mxCell id="e_tc1" edge="1" parent="1" source="ent_reportes" target="rel_tiene_com" value="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_tc2" edge="1" parent="1" source="rel_tiene_com" target="ent_comentarios">
+        <mxCell id="e_tc2" edge="1" parent="1" source="rel_tiene_com" target="ent_comentarios" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="l_HGWYc6xFR4wP3CeHjB-8" connectable="0" parent="e_tc2" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="N" vertex="1">
@@ -384,10 +394,10 @@
         <mxCell id="rel_tiene_historial" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" value="TIENE_HISTORIAL" vertex="1">
           <mxGeometry height="50" width="120" x="750" y="860" as="geometry" />
         </mxCell>
-        <mxCell id="e_th1" edge="1" parent="1" source="ent_reportes" target="rel_tiene_historial">
+        <mxCell id="e_th1" edge="1" parent="1" source="ent_reportes" target="rel_tiene_historial" value="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_th2" edge="1" parent="1" source="rel_tiene_historial" target="ent_historial">
+        <mxCell id="e_th2" edge="1" parent="1" source="rel_tiene_historial" target="ent_historial" value="N">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="l_HGWYc6xFR4wP3CeHjB-9" edge="1" parent="1" source="l_HGWYc6xFR4wP3CeHjB-11" style="exitX=0.688;exitY=0.207;exitDx=0;exitDy=0;exitPerimeter=0;" target="ent_comentarios">
