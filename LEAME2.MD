@@ -1,4 +1,3 @@
-
 Lista de requisitos de información:
 
 Registrar reportes con descripción, ubicación exacta (bloque, piso, salón), categoría de falla y prioridad.
