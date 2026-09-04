@@ -1,5 +1,4 @@
 Lista de requisitos de información:
-
 Registrar reportes con descripción, ubicación exacta (bloque, piso, salón), categoría de falla y prioridad.
 Autenticar usuarios y diferenciar su rol (Estudiante, Profesor, Técnico, Monitor, Empleado de Aseo).
 Asignar un técnico a cada reporte y permitir reasignación si es necesario.
