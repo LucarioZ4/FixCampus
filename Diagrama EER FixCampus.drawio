@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Página-1" id="S9emZNIxMAG4oClhYxBR">
-    <mxGraphModel dx="2778" dy="1853" grid="1" gridSize="30" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+    <mxGraphModel dx="3957" dy="2505" grid="1" gridSize="30" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -424,6 +424,15 @@
         <mxCell id="l_HGWYc6xFR4wP3CeHjB-13" connectable="0" parent="l_HGWYc6xFR4wP3CeHjB-12" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="N" vertex="1">
           <mxGeometry relative="1" x="0.444" y="1" as="geometry">
             <mxPoint y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fjUg8wn-3zJ0zbKBQ60e-1" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;direction=west;" value="user_id" vertex="1">
+          <mxGeometry height="40" width="80" x="1460" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fjUg8wn-3zJ0zbKBQ60e-3" edge="1" parent="1" source="ent_tecnicos_der" style="entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="fjUg8wn-3zJ0zbKBQ60e-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1410" y="100" as="sourcePoint" />
+            <mxPoint x="1445" y="90" as="targetPoint" />
           </mxGeometry>
         </mxCell>
       </root>
