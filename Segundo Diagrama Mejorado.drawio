@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Modelo_EER_FixCampus" id="EER_FixCampus_Corrected">
-    <mxGraphModel dx="2049" dy="1135" grid="1" gridSize="20" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+    <mxGraphModel dx="1937" dy="1073" grid="1" gridSize="20" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -50,7 +50,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="ent_tecnicos" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontStyle=1;fontSize=14;" value="TECNICOS" vertex="1">
-          <mxGeometry height="60" width="120" x="610" y="260" as="geometry" />
+          <mxGeometry height="60" width="120" x="610.61" y="260" as="geometry" />
         </mxCell>
         <mxCell id="edge_isa_bottom" edge="1" parent="1" source="isa_tecnico" target="ent_tecnicos">
           <mxGeometry relative="1" as="geometry" />
