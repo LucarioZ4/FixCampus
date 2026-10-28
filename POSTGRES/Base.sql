@@ -1,24 +1,24 @@
 -- Migración 001: Tablas independientes de catálogo
 
 CREATE TABLE ROLES (
-    id_rol INT PRIMARY KEY AUTO_INCREMENT,
+    id_rol INT PRIMARY KEY,
     nombre_rol VARCHAR(50) NOT NULL UNIQUE
 );
 
 CREATE TABLE UBICACIONES (
-    ubicacion_id INT PRIMARY KEY AUTO_INCREMENT,
+    ubicacion_id INT PRIMARY KEY,
     nombre_lugar VARCHAR(100) NOT NULL,
     direccion VARCHAR(150) NOT NULL
 );
 
 CREATE TABLE CATEGORIAS (
-    categoria_id INT PRIMARY KEY AUTO_INCREMENT,
+    categoria_id INT PRIMARY KEY,
     nombre_cat VARCHAR(50) NOT NULL UNIQUE,
     descripcion TEXT
 );
 
 CREATE TABLE ESTADOS (
-    estado_id INT PRIMARY KEY AUTO_INCREMENT,
+    estado_id INT PRIMARY KEY,
     nombre_estado VARCHAR(50) NOT NULL UNIQUE,
     color VARCHAR(20) NOT NULL DEFAULT '#000000'
 );
@@ -26,7 +26,7 @@ CREATE TABLE ESTADOS (
 -- Migración 002: Usuarios y especialización ISA (Técnicos)
 
 CREATE TABLE USUARIOS (
-    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT PRIMARY KEY,
     cedula VARCHAR(20) NOT NULL UNIQUE,
     nombre VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
@@ -49,9 +49,11 @@ CREATE TABLE TECNICOS (
 -- Migración 003: Reportes y tabla intermedia M:N con técnicos
 
 CREATE TABLE REPORTES (
-    id_reporte INT PRIMARY KEY AUTO_INCREMENT,
+    id_reporte INT PRIMARY KEY,
     ticket VARCHAR(20) NOT NULL UNIQUE,
     descripcion TEXT NOT NULL,
+    prioridad VARCHAR(20) NOT NULL DEFAULT 'Media',
+    costo_estimado NUMERIC(10, 2) NOT NULL DEFAULT 0.00,
     user_id INT NOT NULL,           -- Creador del reporte
     ubicacion_id INT NOT NULL,      -- Dónde se ubica
     categoria_id INT NOT NULL,      -- Categoría del reporte
@@ -63,14 +65,16 @@ CREATE TABLE REPORTES (
     CONSTRAINT fk_reportes_categorias FOREIGN KEY (categoria_id) 
         REFERENCES CATEGORIAS(categoria_id) ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT fk_reportes_estados FOREIGN KEY (estado_id) 
-        REFERENCES ESTADOS(estado_id) ON DELETE RESTRICT ON UPDATE CASCADE
+        REFERENCES ESTADOS(estado_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT chk_reportes_prioridad CHECK (prioridad IN ('Baja', 'Media', 'Alta', 'Urgente')),
+    CONSTRAINT chk_reportes_costo CHECK (costo_estimado >= 0)
 );
 
 -- Relación M:N entre TECNICOS y REPORTES
 CREATE TABLE ASIGNADO_A (
     user_id INT NOT NULL,
     id_reporte INT NOT NULL,
-    fecha_asig DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    fecha_asig TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (user_id, id_reporte),
     CONSTRAINT fk_asignado_tecnicos FOREIGN KEY (user_id) 
         REFERENCES TECNICOS(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -81,9 +85,9 @@ CREATE TABLE ASIGNADO_A (
 -- Migración 004: Comentarios e Historial de Estados
 
 CREATE TABLE COMENTARIOS (
-    comentario_id INT PRIMARY KEY AUTO_INCREMENT,
+    comentario_id INT PRIMARY KEY,
     contenido TEXT NOT NULL,
-    fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    fecha_creacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     user_id INT NOT NULL,
     id_reporte INT NOT NULL,
     CONSTRAINT fk_comentarios_usuarios FOREIGN KEY (user_id) 
@@ -93,8 +97,8 @@ CREATE TABLE COMENTARIOS (
 );
 
 CREATE TABLE HISTORIAL_REPORTES (
-    historial_id INT PRIMARY KEY AUTO_INCREMENT,
-    fecha_cambio DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    historial_id INT PRIMARY KEY,
+    fecha_cambio TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     observacion TEXT,
     id_reporte INT NOT NULL,
     estado_id INT NOT NULL,
