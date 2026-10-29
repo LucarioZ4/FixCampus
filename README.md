@@ -68,3 +68,92 @@ Teniendo en cuenta que el enfoque de la asignatura hasta ahora se ha basado úni
 - **Definiciones de Restricciones y Catálogos:** Se consideran, para ilustrar cómo la lógica de negocio va a requerir que algunos campos no puedan quedar sueltos. Por ejemplo, los estados no pueden ser texto libre (sino que la lógica exige que haya un catálogo cerrado (ESTADOS)).
 
   La lógica exigirá obligatoriamente cumplir un ciclo estricto (Pendiente -> Asignado -> En proceso -> Solucionado) evitando que haya pobreza de despliegues de información a la hora de implementar una aplicación.
+
+
+  ```mermaid
+erDiagram
+    ROLES ||--o{ USUARIOS : "tiene"
+    USUARIOS ||--o| TECNICOS : "se especializa"
+    CATEGORIAS ||--o{ TECNICOS : "especialidad"
+    CATEGORIAS ||--o{ REPORTES : "clasifica"
+    UBICACIONES ||--o{ REPORTES : "ocurre en"
+    ESTADOS ||--o{ REPORTES : "estado actual"
+    ESTADOS ||--o{ HISTORIAL_REPORTES : "estado registrado"
+    USUARIOS ||--o{ REPORTES : "crea"
+    USUARIOS ||--o{ COMENTARIOS : "escribe"
+    USUARIOS ||--o{ HISTORIAL_REPORTES : "realiza el cambio"
+    TECNICOS ||--o{ ASIGNADO_A : "atiende"
+    REPORTES ||--o{ ASIGNADO_A : "se asigna"
+    REPORTES ||--o{ COMENTARIOS : "recibe"
+    REPORTES ||--o{ HISTORIAL_REPORTES : "tiene"
+
+    ROLES {
+        int id_rol PK
+        varchar(50) nombre_rol UK
+    }
+    UBICACIONES {
+        int ubicacion_id PK
+        varchar(50) campus
+        varchar(30) bloque
+        varchar(100) nombre_lugar
+        smallint piso
+        varchar(40) salon
+    }
+    CATEGORIAS {
+        int categoria_id PK
+        varchar(50) nombre_cat UK
+        text descripcion
+    }
+    ESTADOS {
+        int estado_id PK
+        varchar(50) nombre_estado UK
+        varchar(20) color
+    }
+    USUARIOS {
+        int user_id PK
+        varchar(20) cedula UK
+        varchar(100) nombre
+        varchar(100) email UK
+        varchar(20) telefono
+        varchar(20) estado
+        int id_rol FK
+    }
+    TECNICOS {
+        int user_id PK, FK
+        int id_rol FK
+        int categoria_id FK
+    }
+    REPORTES {
+        int id_reporte PK
+        varchar(20) ticket UK
+        text descripcion
+        varchar(20) prioridad
+        numeric costo_estimado
+        int user_id FK
+        int ubicacion_id FK
+        int categoria_id FK
+        int estado_id FK
+    }
+    ASIGNADO_A {
+        int asignacion_id PK
+        int user_id FK
+        int id_reporte FK
+        timestamp fecha_asig
+        timestamp fecha_fin
+    }
+    COMENTARIOS {
+        int comentario_id PK
+        text contenido
+        timestamp fecha_creacion
+        int user_id FK
+        int id_reporte FK
+    }
+    HISTORIAL_REPORTES {
+        int historial_id PK
+        timestamp fecha_cambio
+        text observacion
+        int id_reporte FK
+        int estado_id FK
+        int user_id FK
+    }
+```
