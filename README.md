@@ -47,30 +47,15 @@ El diseño conceptual y lógico de la base de datos de **FixCampus** se encuentr
 El archivo fuente del diagrama se encuentra disponible en la carpeta de documentación bajo el nombre del archivo `.drawio`.
 
 ### 🔍 Cómo ver o editar el diagrama
-
+j
 
 * **Visor Oficial Web:** Entra a [draw.io](https://app.diagrams.net/), descarga o clona este repositorio, y arrastra y suelta el archivo `.drawio` directamente sobre el lienzo en blanco para visualizarlo y editarlo de inmediato.
 * **Extensión para VS Code:** Si trabajas desde Visual Studio Code, puedes instalar la extensión oficial **Draw.io Integration** (de *hediet*) para abrir, ver y modificar el archivo con un solo clic dentro del entorno de desarrollo.
 * **Previsualización Rápida:** También puedes consultar las exportaciones en imagen (`.png` o `.svg`) alojadas en la carpeta de documentación para una vista previa directa desde GitHub.
 
-## Traducción del Diagrama a Lógica
+### Diagrama relacional
 
-Teniendo en cuenta que el enfoque de la asignatura hasta ahora se ha basado únicamente en el concepto y en la lógica (considerando sólo la notación de Chen y las reglas de los negocios; excluyendo en estos momentos cualquier tipo de implementación estricta de motores de bases de datos), la explicación de cómo el diagrama se traduce y razona lógicamente hace hincapié en lo siguiente:
-
-- **Traducción de Entidades y Atributos:** Cada uno de los rectángulos del diagrama del modelo de Chen (como REPORTES, USUARIOS o UBICACIONES) representan una entidad lógica que agrupa objetos del mundo real que tienen las mismas características (sus atributos, representados por óvalos). Por ejemplo, el reporte agrupa lógicamente la descripción, la prioridad y el ticket único.
-
-- **Resolución de las Relaciones de 1 a N (o Uno a Muchos):** Se explica mediante conexiones de dependencia lógica. Por ejemplo, un usuario puede crear muchos reportes, pero un reporte es de un único creador. De un modo lógico se resuelve haciendo "pasar" la identidad del usuario ("reportado por") hacia el mismo reporte de modo que se mantenga la pertenencia sin repetición de información.
-
-- **Resolución de Relaciones N a N (Muchos a Muchos):** Se da como resultado la necesidad de crear un enlace lógico intermedio: un reporte pasa por varios técnicos o un técnico puede atender a varios reportes a lo largo del tiempo; si no existiera un nexo intermedio entre ambas entidades la lógica colapsaría.
-
-  Para que eso no suceda, al final de la fase de diseño se deberá crear una entidad asociativa (ASIGNACIONES) que servirá como punto de enlace, para guardar el histórico de qué técnico atendió a qué reporte y cuándo.
-
-- **Definiciones de Restricciones y Catálogos:** Se consideran, para ilustrar cómo la lógica de negocio va a requerir que algunos campos no puedan quedar sueltos. Por ejemplo, los estados no pueden ser texto libre (sino que la lógica exige que haya un catálogo cerrado (ESTADOS)).
-
-  La lógica exigirá obligatoriamente cumplir un ciclo estricto (Pendiente -> Asignado -> En proceso -> Solucionado) evitando que haya pobreza de despliegues de información a la hora de implementar una aplicación.
-
-
-  ```mermaid
+```mermaid
 erDiagram
     ROLES ||--o{ USUARIOS : "tiene"
     USUARIOS ||--o| TECNICOS : "se especializa"
@@ -89,45 +74,45 @@ erDiagram
 
     ROLES {
         int id_rol PK
-        varchar(50) nombre_rol UK
+        varchar nombre_rol UK
     }
     UBICACIONES {
         int ubicacion_id PK
-        varchar(50) campus
-        varchar(30) bloque
-        varchar(100) nombre_lugar
+        varchar campus
+        varchar bloque
+        varchar nombre_lugar
         smallint piso
-        varchar(40) salon
+        varchar salon
     }
     CATEGORIAS {
         int categoria_id PK
-        varchar(50) nombre_cat UK
+        varchar nombre_cat UK
         text descripcion
     }
     ESTADOS {
         int estado_id PK
-        varchar(50) nombre_estado UK
-        varchar(20) color
+        varchar nombre_estado UK
+        varchar color
     }
     USUARIOS {
         int user_id PK
-        varchar(20) cedula UK
-        varchar(100) nombre
-        varchar(100) email UK
-        varchar(20) telefono
-        varchar(20) estado
+        varchar cedula UK
+        varchar nombre
+        varchar email UK
+        varchar telefono
+        varchar estado
         int id_rol FK
     }
     TECNICOS {
-        int user_id PK, FK
+        int user_id PK
         int id_rol FK
         int categoria_id FK
     }
     REPORTES {
         int id_reporte PK
-        varchar(20) ticket UK
+        varchar ticket UK
         text descripcion
-        varchar(20) prioridad
+        varchar prioridad
         numeric costo_estimado
         int user_id FK
         int ubicacion_id FK
@@ -157,3 +142,6 @@ erDiagram
         int user_id FK
     }
 ```
+
+
+
