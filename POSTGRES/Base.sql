@@ -74,7 +74,7 @@ CREATE TABLE REPORTES (
 CREATE TABLE ASIGNADO_A (
     user_id INT NOT NULL,
     id_reporte INT NOT NULL,
-    fecha_asig TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    fecha_asig DATE NOT NULL DEFAULT CURRENT_DATE,
     PRIMARY KEY (user_id, id_reporte),
     CONSTRAINT fk_asignado_tecnicos FOREIGN KEY (user_id) 
         REFERENCES TECNICOS(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -87,7 +87,7 @@ CREATE TABLE ASIGNADO_A (
 CREATE TABLE COMENTARIOS (
     comentario_id INT PRIMARY KEY,
     contenido TEXT NOT NULL,
-    fecha_creacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    fecha_creacion DATE NOT NULL DEFAULT CURRENT_DATE,
     user_id INT NOT NULL,
     id_reporte INT NOT NULL,
     CONSTRAINT fk_comentarios_usuarios FOREIGN KEY (user_id) 
@@ -98,7 +98,7 @@ CREATE TABLE COMENTARIOS (
 
 CREATE TABLE HISTORIAL_REPORTES (
     historial_id INT PRIMARY KEY,
-    fecha_cambio TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    fecha_cambio DATE NOT NULL DEFAULT CURRENT_DATE,
     observacion TEXT,
     id_reporte INT NOT NULL,
     estado_id INT NOT NULL,
