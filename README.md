@@ -123,19 +123,19 @@ erDiagram
         int asignacion_id PK
         int user_id FK
         int id_reporte FK
-        timestamp fecha_asig
-        timestamp fecha_fin
+        date fecha_asig
+        date fecha_fin
     }
     COMENTARIOS {
         int comentario_id PK
         text contenido
-        timestamp fecha_creacion
+        date fecha_creacion
         int user_id FK
         int id_reporte FK
     }
     HISTORIAL_REPORTES {
         int historial_id PK
-        timestamp fecha_cambio
+        date fecha_cambio
         text observacion
         int id_reporte FK
         int estado_id FK
