@@ -68,3 +68,16 @@ Teniendo en cuenta que el enfoque de la asignatura hasta ahora se ha basado úni
 - **Definiciones de Restricciones y Catálogos:** Se consideran, para ilustrar cómo la lógica de negocio va a requerir que algunos campos no puedan quedar sueltos. Por ejemplo, los estados no pueden ser texto libre (sino que la lógica exige que haya un catálogo cerrado (ESTADOS)).
 
   La lógica exigirá obligatoriamente cumplir un ciclo estricto (Pendiente -> Asignado -> En proceso -> Solucionado) evitando que haya pobreza de despliegues de información a la hora de implementar una aplicación.
+
+## Declaración de Uso de Inteligencia Artificial y Verificación
+
+En cumplimiento con los lineamientos académicos del proyecto, declaramos que se utilizó Inteligencia Artificial como herramienta de apoyo para:
+1. **Auditoría del esquema SQL:** Verificación de tipos de datos acordes al motor PostgreSQL, comprobación de integridad referencial y detección de restricciones de negocio.
+2. **Generación asistida de datos semilla (Seed Data):** Construcción de registros representativos del campus universitario (Unicesar) para validar las relaciones 1:N, M:N y casos de prueba.
+
+**Protocolo de Verificación Humana:**
+El equipo de trabajo revisó y validó línea por línea cada script:
+- Se verificó que la sintaxis no utilizara elementos no vistos en clase (se mantuvo `INT PRIMARY KEY` estándar con inserción manual de identificadores y tipos acotados).
+- Se validaron las acciones referenciales (`ON DELETE CASCADE` y `ON DELETE RESTRICT`) para que correspondan fielmente a las políticas del negocio de mantenimiento universitario.
+- Se comprobaron manualmente en el gestor las pruebas de rechazo de datos frente a las restricciones declaradas.
+
